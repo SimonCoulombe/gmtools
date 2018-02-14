@@ -26,7 +26,7 @@ create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
   dtWorking = data.table::data.table(modelA = modelA,modelB = modelB,modelRatio = modelA/modelB,actual = actual,weight = weight)
   
   ## Check for NAs in other data points
-  if(anyNA(x = dtWorking[,.(modelA,modelB,actual,weight)])) stop('ERROR: No NANs allowed in scores, weights or actuals')
+  if(anyNA(x = dtWorking[,c("modelA","modelB","actual","weight"),with=FALSE])) stop('ERROR: No NANs allowed in scores, weights or actuals')
   
   ## Create the bins
   dtWorking$bin = gmtools::binnarise(x = dtWorking$modelRatio,w = dtWorking$weight,nbins = nbins)

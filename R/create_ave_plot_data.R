@@ -8,6 +8,7 @@
 #' @param rescale A logical indicating whether you want to the resulting series scaled about the largest level
 #' @keywords ave
 #' @export
+#' @import data.table
 #' @examples
 #'
 
@@ -33,10 +34,9 @@ create_ave_plot_data <- function(x,y_true,y_pred=NULL,w=NULL,rescale=FALSE){
   dtWorking$y_pred = rebase_col(x = dtWorking$y_pred,base = dtWorking$y_pred,w = dtWorking$w)
 
   ## Do the requisite aggregations
-  dtSummary = dtWorking[ , list(wmean_pred = weighted.mean(x = y_pred,w = w),
-                                wmean_true = weighted.mean(x = y_true,w = w),
-                                sum_weight = sum(w))
-                         , by = x][order(x),]
+  dtSummary = dtWorking[ , list(wmean_pred = stats::weighted.mean(x = y_pred,w = w),
+                                wmean_true = stats::weighted.mean(x = y_true,w = w),
+                                sum_weight = base::sum(w)), by = x][base::order(x),]
 
   ## Do a rescaling if required
   if(rescale==TRUE){
