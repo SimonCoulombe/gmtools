@@ -6,6 +6,7 @@
 #' @keywords one hot encode
 #' @export
 #' @examples
+#'
 
 one_hot_encoder <- function(df,features){
   ## suppressPackageStartupMessages(requireNamespace("caret"))

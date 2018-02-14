@@ -14,6 +14,9 @@ one_hot_encoder(df, features)
 \description{
 This function one-hot encodes a list of features
 }
+\examples{
+
+}
 \keyword{encode}
 \keyword{hot}
 \keyword{one}
