@@ -18,8 +18,8 @@
 interaction_search <- function(mdl,features,XGBfiBin='~/Kaggle/xgbfi/bin/',filterExp,XGBfiParams = list(d=3,g=-1,t=100,k=100,h=10),intern=FALSE) {
   
   ## Load required packages
-  suppressPackageStartupMessages(requireNamespace("readxl"))
-  suppressPackageStartupMessages(requireNamespace("rlang"))
+  ## suppressPackageStartupMessages(requireNamespace("readxl"))
+  ## suppressPackageStartupMessages(requireNamespace("rlang"))
   
   ## Create the fmap
   featureList <- features
@@ -48,12 +48,12 @@ interaction_search <- function(mdl,features,XGBfiBin='~/Kaggle/xgbfi/bin/',filte
   system(command = './runXFGBFI.cmd',intern = intern)
   
   ## Find out what sheets we've got in the output
-  sheet_names = excel_sheets(path = './XgbFeatureInteractions.xlsx')
+  sheet_names = readxl::excel_sheets(path = './XgbFeatureInteractions.xlsx')
   sheet_names = setdiff(sheet_names[grepl(pattern = 'Interaction Depth',x = sheet_names)],'Interaction Depth 0')
   
   ## Preparing to thug
   goodInts = lapply(X = sheet_names,function(s){
-    rxl = as.data.frame(read_excel(path = './XgbFeatureInteractions.xlsx',sheet = s,col_names = TRUE)) 
+    rxl = as.data.frame(readxl::read_excel(path = './XgbFeatureInteractions.xlsx',sheet = s,col_names = TRUE)) 
     names(rxl) = gsub(pattern = ' ',replacement = '_',x = names(rxl))
     rxl = rxl %>% filter(eval(parse(text = filterExp))) %>% select(Interaction) %>% unlist() %>% as.character() ##filter(Gain_Rank < (gainRank+1))
     return(rxl)

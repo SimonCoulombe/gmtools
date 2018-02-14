@@ -94,7 +94,7 @@ process_importances <- function(importances){
 xgboost_boruta <- function(df,x,y,w=NULL,niter = 10,xgbParams){
 
   ## Load required packages
-  suppressPackageStartupMessages(requireNamespace("xgboost"))
+  ## suppressPackageStartupMessages(requireNamespace("xgboost"))
   
   ## Create all the shadow features
   message('>>>>>> Creating Shadow Features')
@@ -104,7 +104,7 @@ xgboost_boruta <- function(df,x,y,w=NULL,niter = 10,xgbParams){
   ## Create the data for use in the loop
   message('>>>>>> Creating Training Matrix')
   if(is.null(w)) w = rep(1,length(y))
-  dtrain = xgb.DMatrix(data = as.matrix(dfShadow[,useFeatures]),label = y,weight = w)
+  dtrain = xgboost::xgb.DMatrix(data = as.matrix(dfShadow[,useFeatures]),label = y,weight = w)
   
   ## Begin the iterative loop
   init_seed = 1988; 
@@ -115,25 +115,25 @@ xgboost_boruta <- function(df,x,y,w=NULL,niter = 10,xgbParams){
     
     ## Fit the model
     set.seed(init_seed+i)
-    xgbCV = xgb.cv(params  = xgbParams,
-                   data    = dtrain,
-                   nrounds = 1000,
-                   nfold   = 5,
-                   print_every_n = 10,
-                   early_stopping_rounds = 5,
-                   verbose = FALSE)
+    xgbCV = xgboost::xgb.cv(params  = xgbParams,
+                            data    = dtrain,
+                            nrounds = 1000,
+                            nfold   = 5,
+                            print_every_n = 10,
+                            early_stopping_rounds = 5,
+                            verbose = FALSE)
     
     set.seed(init_seed+i)
-    xgbFinal = xgb.train(params    = xgbParams,
-                         data      = dtrain,
-                         nrounds   = xgbCV$best_iteration,
-                         verbose = FALSE,
-                         #watchlist = list(train = dtrain),
-                         print_every_n = 10)
+    xgbFinal = xgboost::xgb.train(params    = xgbParams,
+                                  data      = dtrain,
+                                  nrounds   = xgbCV$best_iteration,
+                                  verbose = FALSE,
+                                  #watchlist = list(train = dtrain),
+                                  print_every_n = 10)
     
     silent = gc(verbose = FALSE)
     
-    importance = xgb.importance(feature_names = useFeatures,model = xgbFinal)
+    importance = xgboost::xgb.importance(feature_names = useFeatures,model = xgbFinal)
     return(importance)
   })
   

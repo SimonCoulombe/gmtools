@@ -21,7 +21,7 @@
 train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=TRUE,...){
   
   ## Load xgboost
-  suppressPackageStartupMessages(requireNamespace("xgboost"))
+  ## suppressPackageStartupMessages(requireNamespace("xgboost"))
   
   ## Are we doing CV?
   is_cv = is.null(dvalid)
@@ -38,20 +38,20 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
   
   ## Create the various matricies
   if(verbose) message('>>>>> Creating Matricies')
-  dtrain = xgb.DMatrix(data = as.matrix(dtrain[,x]),label = dtrain[,y],weight = dtrain[,w])
-  if(!is_cv) dvalid = xgb.DMatrix(data = as.matrix(dvalid[,x]),label = dvalid[,y],weight = dvalid[,w])
+  dtrain = xgboost::xgb.DMatrix(data = as.matrix(dtrain[,x]),label = dtrain[,y],weight = dtrain[,w])
+  if(!is_cv) dvalid = xgboost::xgb.DMatrix(data = as.matrix(dvalid[,x]),label = dvalid[,y],weight = dvalid[,w])
   
   ## If we're doing CV pick nrounds
   
   if(is_cv){ if(verbose) message('>>>>> Fitting CV Model')
-             xgbCV = xgb.cv(params  = xgbParams,
-                            data    = dtrain,
-                            nrounds = nrounds,
-                            early_stopping_rounds = early_stopping_rounds,
-                            nfold   = nfold,
-                            folds   = folds,
-                            verbose = verbose,
-                            ...) } else xgbCV = NULL 
+             xgbCV = xgboost::xgb.cv(params  = xgbParams,
+                                     data    = dtrain,
+                                     nrounds = nrounds,
+                                     early_stopping_rounds = early_stopping_rounds,
+                                     nfold   = nfold,
+                                     folds   = folds,
+                                     verbose = verbose,
+                                     ...) } else xgbCV = NULL 
   
   ## Sort out the parameters
   if(verbose) message('>>>>> Extracting Parameters')
@@ -61,13 +61,13 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
  
   ## Now train the final model
   if(verbose) message('>>>>> Training Final Model')
-  finalModel = xgb.train(params    = xgbParams,
-                         data      = dtrain,
-                         nrounds   = opt_nrounds,
-                         watchlist = watchlist,
-                         early_stopping_rounds = early_stopping_rounds,
-                         verbose = verbose,
-                         ...)
+  finalModel = xgboost::xgb.train(params    = xgbParams,
+                                  data      = dtrain,
+                                  nrounds   = opt_nrounds,
+                                  watchlist = watchlist,
+                                  early_stopping_rounds = early_stopping_rounds,
+                                  verbose = verbose,
+                                  ...)
   
   ## Return final model
   return(list(finalModel=finalModel,

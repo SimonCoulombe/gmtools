@@ -14,7 +14,7 @@
 create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
   
   ## Make sure data.table package is loaded
-  suppressPackageStartupMessages(requireNamespace("data.table"))
+  ## suppressPackageStartupMessages(requireNamespace("data.table"))
   
   ## Deal with null weights
   if(is.null(weight)) weight = rep(1,length(modelA))
@@ -23,21 +23,21 @@ create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
   if(nbins < 1|nbins %% 1 != 0) stop('ERROR: nbins should be positive integer')
   
   ## Bind everything together into a working table
-  dtWorking = data.table(modelA = modelA,modelB = modelB,modelRatio = modelA/modelB,actual = actual,weight = weight)
+  dtWorking = data.table::data.table(modelA = modelA,modelB = modelB,modelRatio = modelA/modelB,actual = actual,weight = weight)
   
   ## Check for NAs in other data points
   if(anyNA(x = dtWorking[,.(modelA,modelB,actual,weight)])) stop('ERROR: No NANs allowed in scores, weights or actuals')
   
   ## Create the bins
-  dtWorking$bin = binnarise(x = dtWorking$modelRatio,w = dtWorking$weight,nbins = nbins)
+  dtWorking$bin = gmtools::binnarise(x = dtWorking$modelRatio,w = dtWorking$weight,nbins = nbins)
     
   ## Pro-rata scores
   dtWorking$modelA = dtWorking$modelA * dtWorking$weight
   dtWorking$modelB = dtWorking$modelB * dtWorking$weight
   
   ## rebase columns
-  dtWorking$modelA = rebase_col(x = dtWorking$modelA,base = dtWorking$actual,w = dtWorking$weight)
-  dtWorking$modelB = rebase_col(x = dtWorking$modelB,base = dtWorking$actual,w = dtWorking$weight)
+  dtWorking$modelA = gmtools::rebase_col(x = dtWorking$modelA,base = dtWorking$actual,w = dtWorking$weight)
+  dtWorking$modelB = gmtools::rebase_col(x = dtWorking$modelB,base = dtWorking$actual,w = dtWorking$weight)
   
   ## Aggregate
   ret = dtWorking[ , list(mean_modelA = weighted.mean(x = modelA,w = weight),

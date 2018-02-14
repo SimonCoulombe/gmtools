@@ -8,10 +8,10 @@
 #' @examples
 
 one_hot_encoder <- function(df,features){
-  suppressPackageStartupMessages(requireNamespace("caret"))
+  ## suppressPackageStartupMessages(requireNamespace("caret"))
   df      = as.data.frame(df)
   frmla   = as.formula(paste0('~ ',paste(features,collapse = ' + ')))
-  oh_xfrm = dummyVars(formula = frmla,data = df,sep = '.')
+  oh_xfrm = caret::dummyVars(formula = frmla,data = df,sep = '.')
   oh_dat  = predict(oh_xfrm,df)
   keepCol = names(df)[-which(names(df) %in% features)]
   df      = cbind(df[,keepCol],oh_dat)

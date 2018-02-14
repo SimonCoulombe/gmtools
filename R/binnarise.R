@@ -12,7 +12,7 @@
 binnarise <- function(x,w=NULL,nbins=10){
   
   ## Make sure dplyr is loaded
-  suppressPackageStartupMessages(requireNamespace("dplyr"))
+  ## suppressPackageStartupMessages(requireNamespace("dplyr"))
   
   ## Deal with null weights
   if(is.null(w)) w = rep(1,length(x))
@@ -25,8 +25,8 @@ binnarise <- function(x,w=NULL,nbins=10){
   
   ## Bind info into a frame
   dfWorking = data.frame(x = x,w = w,Index = seq(1,length(x))) %>% 
-    arrange(x) %>% 
-    mutate(cumSumW = cumsum(w))
+    dplyr::arrange(x) %>% 
+    dplyr::mutate(cumSumW = cumsum(w))
 
   ## Create the breaks for the binning - need a + 1 for fence post errors 
   breaks = quantile(x = dfWorking$cumSumW,probs = seq(0,1,length=nbins+1))

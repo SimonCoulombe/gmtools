@@ -46,13 +46,13 @@
 .target_encode <- function(trn_x,tst_x,trn_y,trn_w = NULL,min_samples_leaf=1,smoothing = 1,noise_level = 0){
   
   ## Load required packages
-  suppressPackageStartupMessages(requireNamespace("data.table"))
+  ## suppressPackageStartupMessages(requireNamespace("data.table"))
   
   ## Deal with null weights
   if(is.null(trn_w)) trn_w = rep(1,length(trn_x))
   
   ## Compute the group averages
-  dtWorking = data.table(xval = trn_x,yval = trn_y,wval = trn_w)
+  dtWorking = data.table::data.table(xval = trn_x,yval = trn_y,wval = trn_w)
   averages = dtWorking[ , list( wmean_target = weighted.mean(x = yval,w = wval),
                                 sum_weight   = sum(wval)) 
                         , by = xval][order(xval),]

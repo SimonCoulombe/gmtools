@@ -24,10 +24,10 @@
 label_encoder <- function(df,features){
   
   ## Check data.table is loaded
-  suppressPackageStartupMessages(requireNamespace("data.table"))
+  ## suppressPackageStartupMessages(requireNamespace("data.table"))
   
   ## Convert the input object to a data.frame
-  if(class(df)[1] != "data.table") df = as.data.table(df)
+  if(class(df)[1] != "data.table") df = data.table::as.data.table(df)
   
   ## Apply the label encoder internal function
   df[ , (features):=lapply(.SD,.label_encode) , .SDcols = features]   

@@ -13,25 +13,25 @@
 
 plot_ave_data <- function(x,y_true,y_pred=NULL,w=NULL,rescale=FALSE){
   
-  suppressPackageStartupMessages(requireNamespace("ggplot2"))
+  ## suppressPackageStartupMessages(requireNamespace("ggplot2"))
   
-  plotData = create_ave_plot_data(x = x,y_true = y_true,y_pred = y_pred,w = w,rescale = rescale)
+  plotData = gmtools::create_ave_plot_data(x = x,y_true = y_true,y_pred = y_pred,w = w,rescale = rescale)
   plotData$x = as.factor(plotData$x)
   
-  thePlot = ggplot(data = plotData) + 
-            geom_bar(aes(x = x,y = scaled_weight),stat = 'identity',alpha = 0.3,fill = 'yellow') +
-            geom_line(aes(x = x,y = wmean_true,colour = 'actual',group = 1)) + 
-            geom_point(aes(x = x,y = wmean_true,colour = 'actual',group = 1))
+  thePlot = ggplot2::ggplot(data = plotData) + 
+            ggplot2::geom_bar(aes(x = x,y = scaled_weight),stat = 'identity',alpha = 0.3,fill = 'yellow') +
+            ggplot2::geom_line(aes(x = x,y = wmean_true,colour = 'actual',group = 1)) + 
+            ggplot2::geom_point(aes(x = x,y = wmean_true,colour = 'actual',group = 1))
           
   if(!is.null(y_pred)) {
     
     thePlot = thePlot + 
-              geom_line(aes(x = x,y = wmean_pred,colour = 'fitted',group = 1)) + 
-              geom_point(aes(x = x,y = wmean_pred,colour = 'fitted',group = 1))
+              ggplot2::geom_line(aes(x = x,y = wmean_pred,colour = 'fitted',group = 1)) + 
+              ggplot2::geom_point(aes(x = x,y = wmean_pred,colour = 'fitted',group = 1))
     
   } 
   
-  thePlot = thePlot + scale_color_manual(values = c('blue','green')) + labs(y = 'average actual')
+  thePlot = thePlot + ggplot2::scale_color_manual(values = c('blue','green')) + ggplot2::labs(y = 'average actual')
   
   return(thePlot)
 }
