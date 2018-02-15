@@ -7,7 +7,7 @@ Description: Insurance Risk Modelling has remained unchanged for over 25 years.
 			 This package contains a number of accelerators which seek to short circuit the development process.
 Depends: R (>= 3.4.3), MLmetrics, caret, data.table, dplyr, ggplot2, readxl, xgboost
 Imports: data.table
-License: GPL-3
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1.9000
