@@ -2,7 +2,7 @@
    context("Check the binary encoder functions properly")
 
 ## Load data for tests
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## Run the tests
    test_that(desc = 'the binary_encode help works properly',

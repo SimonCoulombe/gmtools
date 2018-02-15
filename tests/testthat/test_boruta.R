@@ -2,7 +2,7 @@
    context("Check the boruta family of functions work properly")   
 
 ## Load some test data    
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## Run the tests    
    test_that(desc = 'the .create_shadow function works',code = {

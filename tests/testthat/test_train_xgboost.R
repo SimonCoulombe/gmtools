@@ -2,7 +2,7 @@
    context("Check the train_xgboost function works properly")      
 
 ## Load data
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## Start testing
    features = c('veh_value','agecat','veh_age')

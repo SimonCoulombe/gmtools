@@ -4,7 +4,7 @@
 
 ## Load Package & Data
    ## require(data.table)
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
  
 ## Run tests
    test_that(desc = 'binnarise function works for weighted data',code = {

@@ -2,7 +2,7 @@
    context("Check the create_interactions function works properly")  
 
 ## Load Some packages & data
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## Start the testing
    test_that(desc = 'the .prepare_interaction function works',code = {

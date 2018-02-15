@@ -2,7 +2,7 @@
    context("Check the label_encoder works properly")   
 
 ## Load Package & Data
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
      
 ## Run the tests
    

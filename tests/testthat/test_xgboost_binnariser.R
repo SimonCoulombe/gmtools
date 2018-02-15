@@ -2,7 +2,7 @@
    context('Check the xgboost binnariser works properly')
 
 ## Load data for tests
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## Begin the testing
 

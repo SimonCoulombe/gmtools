@@ -2,7 +2,7 @@
    context("Check the target_encoder function works properly")   
    
 ## Load packages and data   
-   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
+   data(dataCar,package = 'insuranceData')
 
 ## tests for target encode
    tar = .target_encode(trn_x = dataCar$gender,tst_x = dataCar$gender,trn_y = dataCar$numclaims,trn_w = dataCar$exposure,min_samples_leaf = 0,smoothing = 1,noise_level = 0)
