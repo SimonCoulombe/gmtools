@@ -2,8 +2,7 @@
    context("Check the train_xgboost function works properly")      
 
 ## Load data
-   pkgs = c('insuranceData'); sapply(pkgs,require,character.only = TRUE)
-   data(dataCar)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Start testing
    features = c('veh_value','agecat','veh_age')

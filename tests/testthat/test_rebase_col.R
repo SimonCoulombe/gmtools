@@ -2,7 +2,7 @@
    context("Check the rebase_col function works properly") 
 
 ## Load Package & Data
-   require(testthat);data(mtcars)
+   data(mtcars)
 
 ## Begin the tests
    test_that(desc = 'The function can rebase a numeric col',code = {

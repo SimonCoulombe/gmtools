@@ -2,7 +2,6 @@
    context("Check the create_quantile_plot_data function works properly")   
    
 ## Load Package & Data
-   require(data.table)
    data(mtcars)
   
 ## Do some high level testing

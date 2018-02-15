@@ -2,7 +2,7 @@
    context("Check the create_double_lift_data functions work properly")   
 
 ## Load the test data
-   data(dataCar)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Do the testing
 

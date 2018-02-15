@@ -2,8 +2,7 @@
    context("Check the boruta family of functions work properly")   
 
 ## Load some test data    
-   pkgs = c('insuranceData'); sapply(pkgs,require,character.only = TRUE)
-   data(dataCar) 
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Run the tests    
    test_that(desc = 'the .create_shadow function works',code = {

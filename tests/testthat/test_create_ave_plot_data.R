@@ -2,7 +2,7 @@
    context("Check the create_ave_plot_data function works")   
 
 ## Load Package & Data
-   data(mtcars)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Start the testing
    mdl_weight = glm(formula = mpg ~ disp + drat + gear,data = mtcars,weights = carb)

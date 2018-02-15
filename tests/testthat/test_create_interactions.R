@@ -2,8 +2,7 @@
    context("Check the create_interactions function works properly")  
 
 ## Load Some packages & data
-   pkgs = c('insuranceData'); sapply(pkgs,require,character.only = TRUE)
-   data(dataCar)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Start the testing
    test_that(desc = 'the .prepare_interaction function works',code = {

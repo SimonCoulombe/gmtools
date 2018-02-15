@@ -2,8 +2,7 @@
    context('Check the xgboost binnariser works properly')
 
 ## Load data for tests
-   require(insuranceData)
-   data(dataCar)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
 
 ## Begin the testing
 

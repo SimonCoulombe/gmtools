@@ -2,8 +2,7 @@
    context("Check the label_encoder works properly")   
 
 ## Load Package & Data
-   require(insuranceData); require(data.table)
-   data(dataCar)
+   load(file = "C:\\Users\\George\\Documents\\Development\\gmtools\\tests\\testthat\\dataCar.rda")
      
 ## Run the tests
    
