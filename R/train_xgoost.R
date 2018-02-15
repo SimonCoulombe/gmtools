@@ -14,6 +14,7 @@
 #' @param verbose                Print run time messages  
 #' @param ...                    Additional Arguments to be passed to xgb.cv and/or xgb.train     
 #' @keywords train xgboost
+#' @import xgboost
 #' @export
 #' @examples
 #' 

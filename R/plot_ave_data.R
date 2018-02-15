@@ -8,6 +8,7 @@
 #' @param rescale A logical indicating whether you want to the resulting series scaled about the largest level
 #' @keywords plot ave
 #' @export
+#' @import ggplot2
 #' @examples
 #'
 

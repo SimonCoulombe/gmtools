@@ -10,6 +10,7 @@
 #' @param ...        Additional Arguments to be passed to train_xgboost
 #' @keywords banding xgboost
 #' @export
+#' @import xgboost
 #' @examples
 #' 
 

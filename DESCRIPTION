@@ -6,7 +6,7 @@ Description: Insurance Risk Modelling has remained unchanged for over 25 years.
 			 ML is not current accessible to Actuaries given the general lack of exposure to new tools & techniques.
 			 This package contains a number of accelerators which seek to short circuit the development process.
 Depends: R (>= 3.4.3), ggplot2, xgboost
-Imports: data.table
+Imports: data.table, MLmetrics, caret, dplyr, readxl, insuranceData
 License: MIT
 Encoding: UTF-8
 LazyData: true

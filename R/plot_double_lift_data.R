@@ -8,6 +8,7 @@
 #' @param nbins Passed to the binnarise function - how many equally sized bins should the ratio be cut into
 #' @keywords plot double lift
 #' @export
+#' @import ggplot2
 #' @examples
 #' 
 

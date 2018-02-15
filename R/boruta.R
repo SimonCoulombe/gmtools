@@ -4,6 +4,7 @@
 #' @param x The vector to be shuffled
 #' @keywords create shadow
 #' @export
+#' @import xgboost
 #' @examples
 #' 
 .create_shadow <- function(x){ x[sample(x = seq(1,length(x)),size = length(x))] }

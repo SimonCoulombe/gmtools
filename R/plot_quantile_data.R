@@ -7,6 +7,7 @@
 #' @param nbins  How many quantiles do you want to create? Defaults to 10
 #' @keywords plot quantile
 #' @export
+#' @import ggplot2
 #' @examples
 #' 
 
