@@ -5,7 +5,7 @@
 #' @param w     A vector that contains the row weights. Defaults to NULL.
 #' @param nbins How many bins do you wish to create.
 #' @keywords binnarise
-#' @import dplyr
+#' @importFrom dplyr arrange mutate
 #' @export
 #' @examples
 #' 
@@ -33,7 +33,7 @@ binnarise <- function(x,w=NULL,nbins=10){
   
   ## Bin the result
   dfWorking$bin = as.numeric(cut(x = dfWorking$cumSumW,breaks = breaks,include.lowest = TRUE))
-  dfWorking = dfWorking %>% arrange(Index)
+  dfWorking = dfWorking %>% dplyr::arrange(Index)
   
   ## Return the result
   return(dfWorking$bin)

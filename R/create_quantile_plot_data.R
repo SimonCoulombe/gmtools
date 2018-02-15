@@ -6,6 +6,7 @@
 #' @param w      A column of row level weights (e.g. exposure, claim count). Defaults to NULL
 #' @param nbins  How many quantiles do you want to create? Defaults to 10
 #' @keywords quantile plot
+#' @importFrom MLmetrics MAE
 #' @export
 #' @examples
 #' 

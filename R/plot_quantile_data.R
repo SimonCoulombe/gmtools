@@ -36,7 +36,6 @@ plot_quantile_data <- function(y_pred,y_true,w=NULL,nbins=10){
 }
 
 # require(insuranceData); data(dataCar)
-# source('~/Development/src/create_quantile_plot_data.R')
 # mdl = glm(formula = I(numclaims/exposure) ~ veh_value + gender + area + agecat,data = dataCar)
 # plot_quantile_data(y_pred = exp(predict(mdl,dataCar)),
 #                    y_true = dataCar$numclaims,

@@ -9,17 +9,12 @@
 #' @param intern      Passed to the system command (internalise console output or not)
 #' @keywords interaction search
 #' @export
+#' @importFrom readxl excel_sheets read_excel
+#' @importFrom dplyr filter select
 #' @examples
 #' 
 
-#source('~/Development/src/train_xgoost.R')
-#source('~/Development/src/create_interactions.R')
-
 interaction_search <- function(mdl,features,XGBfiBin='~/Kaggle/xgbfi/bin/',filterExp,XGBfiParams = list(d=3,g=-1,t=100,k=100,h=10),intern=FALSE) {
-  
-  ## Load required packages
-  ## suppressPackageStartupMessages(requireNamespace("readxl"))
-  ## suppressPackageStartupMessages(requireNamespace("rlang"))
   
   ## Create the fmap
   featureList <- features
@@ -55,7 +50,7 @@ interaction_search <- function(mdl,features,XGBfiBin='~/Kaggle/xgbfi/bin/',filte
   goodInts = lapply(X = sheet_names,function(s){
     rxl = as.data.frame(readxl::read_excel(path = './XgbFeatureInteractions.xlsx',sheet = s,col_names = TRUE)) 
     names(rxl) = gsub(pattern = ' ',replacement = '_',x = names(rxl))
-    rxl = rxl %>% filter(eval(parse(text = filterExp))) %>% select(Interaction) %>% unlist() %>% as.character() ##filter(Gain_Rank < (gainRank+1))
+    rxl = rxl %>% dplyr::filter(eval(parse(text = filterExp))) %>% dplyr::select(Interaction) %>% unlist() %>% as.character() 
     return(rxl)
   })
   

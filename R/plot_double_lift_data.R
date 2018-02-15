@@ -40,7 +40,6 @@ plot_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
 
 
 # require(insuranceData); data(dataCar)
-# source('~/Development/src/create_double_lift_data.R')
 # mdl  = glm(formula = I(numclaims/exposure) ~ veh_value + gender + agecat,data = dataCar,weights = dataCar$exposure,family = poisson)
 # mdl2 = glm(formula = I(numclaims/exposure) ~ agecat,data = dataCar,weights = dataCar$exposure,family = poisson)
 # plot_double_lift_data(modelA = exp(predict(mdl,dataCar)),
