@@ -76,6 +76,7 @@ get_h2o_predictions <- function(mdl,newdata=NULL,xval=FALSE){
 #' @param weights_column   A character indicating the column to be used as row level weights
 #' @param training_frame   An r object pointing to the training data
 #' @param validation_frame An r object pointing to the validation data
+#' @param write_read       Additional argument passed to load_h2o_data function.
 #' @param ...              Additional arguments that will be passed to the underlying training function
 #' @keywords h2o mdl fit
 #' @export
@@ -83,14 +84,14 @@ get_h2o_predictions <- function(mdl,newdata=NULL,xval=FALSE){
 #' @examples
 #' 
 
-fit_h2o_mdl <- function(algo='h2o.glm',x,y,weights_column=NULL,training_frame,validation_frame=NULL,...){
+fit_h2o_mdl <- function(algo='h2o.glm',x,y,weights_column=NULL,training_frame,validation_frame=NULL,write_read=NULL,...){
 
   ## Connect to Cluster
      silent = capture.output(local_h2o = h2o::h2o.init())
 
   ## Get the data into the cluster
-     int_train_data = load_h2o_data(data = training_frame  ,key = 'int_train_data')
-     int_valid_data = load_h2o_data(data = validation_frame,key = 'int_valid_data')
+     int_train_data = load_h2o_data(data = training_frame  ,key = 'int_train_data',write_read = write_read)
+     int_valid_data = load_h2o_data(data = validation_frame,key = 'int_valid_data',write_read = write_read)
 
   ## Fit the h2o mdl
      mdlParams = list(x = x,
