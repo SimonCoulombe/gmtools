@@ -7,7 +7,6 @@
 
 ## Stop Progress Messages
    h2o.no_progress()
-}
 
 ## Begin the testing proper
    glm = fit_h2o_mdl(algo           = 'h2o.glm',
