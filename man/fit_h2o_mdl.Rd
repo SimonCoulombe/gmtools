@@ -5,7 +5,7 @@
 \title{fit_h2o_mdl}
 \usage{
 fit_h2o_mdl(algo = "h2o.glm", x, y, weights_column = NULL, training_frame,
-  validation_frame = NULL, ...)
+  validation_frame = NULL, write_read = NULL, ...)
 }
 \arguments{
 \item{algo}{The name of the function used to train the algorithm i.e. "h2o.glm". Defaults to "h2o.glm"}
@@ -19,6 +19,8 @@ fit_h2o_mdl(algo = "h2o.glm", x, y, weights_column = NULL, training_frame,
 \item{training_frame}{An r object pointing to the training data}
 
 \item{validation_frame}{An r object pointing to the validation data}
+
+\item{write_read}{Additional argument passed to load_h2o_data function.}
 
 \item{...}{Additional arguments that will be passed to the underlying training function}
 }
