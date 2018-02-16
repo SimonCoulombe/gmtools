@@ -5,7 +5,7 @@
 #' @param w     A vector that contains the row weights. Defaults to NULL.
 #' @param nbins How many bins do you wish to create.
 #' @keywords binnarise
-#' @importFrom dplyr arrange mutate %>%
+#' @importFrom dplyr arrange mutate
 #' @export
 #' @examples
 #' 
