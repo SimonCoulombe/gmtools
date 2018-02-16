@@ -5,6 +5,10 @@
    data(dataCar,package = "insuranceData")
    dataCar$freq = dataCar$numclaims / dataCar$exposure
 
+## Stop Progress Messages
+   h2o.no_progress()
+}
+
 ## Begin the testing proper
    glm = fit_h2o_mdl(algo           = 'h2o.glm',
                      x              = c('veh_value','veh_age','agecat'),
@@ -48,7 +52,7 @@
     expect_equal(class(glm_preds),'numeric')
 
     expect_error(object = {gbm_preds = get_h2o_predictions(mdl = gbm,xval = TRUE)},regexp = 'ERROR: Requested OOF')
-    gbm_preds = get_h2o_predictions(mdl = gbm,newdata = int_train_data)
+    gbm_preds = get_h2o_predictions(mdl = gbm,newdata = h2o.getFrame("int_train_data"))
     expect_equal(length(gbm_preds),nrow(dataCar))
     expect_equal(anyNA(gbm_preds),FALSE)
     expect_equal(class(gbm_preds),'numeric')
