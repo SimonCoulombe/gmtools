@@ -2,11 +2,12 @@ Package: gmtools
 Title: A collection of generic ML functions for Insurance Risk Modelling
 Version: 0.0.0.9000
 Authors@R: person("George", "Milsom", email = "George.Milsom@hotmail.com", role = c("aut", "cre"))
-Description: Insurance Risk Modelling has remained unchanged for over 25 years. 
-			 ML is not current accessible to Actuaries given the general lack of exposure to new tools & techniques.
-			 This package contains a number of accelerators which seek to short circuit the development process.
+Description: 
+Insurance Risk Modelling has remained unchanged for over 25 years. 
+ML is not current accessible to Actuaries given the general lack of exposure to new tools & techniques.
+This package contains a number of accelerators which seek to short circuit the development process.
 Depends: R (>= 3.4.3), ggplot2, xgboost
-Imports: data.table, MLmetrics, caret, dplyr, readxl, insuranceData
+Imports: data.table, MLmetrics, caret, dplyr, readxl, insuranceData, h2o, slam
 License: MIT
 Encoding: UTF-8
 LazyData: true
