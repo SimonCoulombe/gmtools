@@ -86,7 +86,7 @@ get_h2o_predictions <- function(mdl,newdata=NULL,xval=FALSE){
 fit_h2o_mdl <- function(algo='h2o.glm',x,y,weights_column=NULL,training_frame,validation_frame=NULL,...){
 
   ## Connect to Cluster
-     local_h2o = h2o::h2o.init()
+     silent = capture.output(local_h2o = h2o::h2o.init())
 
   ## Get the data into the cluster
      int_train_data = load_h2o_data(data = training_frame  ,key = 'int_train_data')

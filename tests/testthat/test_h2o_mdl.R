@@ -21,7 +21,7 @@
    test_that(desc = 'The basic capapbility works properly',code={
     expect_equal(glm@allparameters$training_frame,'int_train_data')
     expect_equal(glm@allparameters$validation_frame,NULL)
-    expect_equal(glm@allparameters$x,c('veh_value','veh_age','agecat'))
+    expect_equal(glm@allparameters$x,c('veh_value','veh_age','agecat','exposure'))
     expect_equal(glm@allparameters$nfolds,5)
     expect_equal(glm@algorithm,'glm')
    })
@@ -36,11 +36,11 @@
                      distribution   = 'poisson')
 
    test_that(desc = 'The algo argument actually works',code={
-    expect_equal(glm@allparameters$training_frame,'int_train_data')
-    expect_equal(glm@allparameters$validation_frame,NULL)
-    expect_equal(glm@allparameters$x,c('veh_value','veh_age','agecat'))
-    expect_equal(glm@allparameters$nfolds,5)
-    expect_equal(glm@algorithm,'gbm')
+    expect_equal(gbm@allparameters$training_frame,'int_train_data')
+    expect_equal(gbm@allparameters$validation_frame,NULL)
+    expect_equal(gbm@allparameters$x,c('veh_value','veh_age','agecat','exposure'))
+    expect_equal(gbm@allparameters$nfolds,5)
+    expect_equal(gbm@algorithm,'gbm')
    })
 
 
