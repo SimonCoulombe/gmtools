@@ -1,8 +1,8 @@
 #' create_quantile_plot_data
 #'
 #' This function creates the data required for a quantile plot
-#' @param y_true The actuals you want to compare your model against
 #' @param y_pred The predictions that you want to compare the actuals to - these will be pro-rated.
+#' @param y_true The actuals you want to compare your model against
 #' @param w      A column of row level weights (e.g. exposure, claim count). Defaults to NULL
 #' @param nbins  How many quantiles do you want to create? Defaults to 10
 #' @keywords quantile plot
@@ -11,7 +11,7 @@
 #' @examples
 #' 
 
-create_quantile_plot_data <- function(y_true,y_pred,w=NULL,nbins=10){
+create_quantile_plot_data <- function(y_pred,y_true,w=NULL,nbins=10){
   
   ## Make sure data.table package is loaded
   ##suppressPackageStartupMessages(requireNamespace("data.table"))
