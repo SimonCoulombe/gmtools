@@ -6,14 +6,14 @@
 #' @param x                      A list of column names that identify the explanatory features 
 #' @param y                      A column name that identifies that target variable
 #' @param w                      A column name that contains the name of the weight column. Defaults to NULL
-#' @param LgbParams              A named list containing the XGBoost Learning Parameters
+#' @param LgbParams              A named list containing the lightgbm Learning Parameters
 #' @param nrounds                The maximum number of iterations 
 #' @param early_stopping_rounds  If performance doesnt improve for this many rounds then stop training
 #' @param nfold                  How many folds to use if doing cross validation   
-#' @param folds                  A list of pre defined fold indicies (test indicies) - see main xgboost docs for more details.
+#' @param folds                  A list of pre defined fold indicies (test indicies) - see main lightgbm docs for more details.
 #' @param verbose                Print run time messages  
 #' @param seed                   An integer which will be used as the random seed. Defaults to 1921
-#' @param ...                    Additional Arguments to be passed to xgb.cv and/or xgb.train     
+#' @param ...                    Additional Arguments to be passed to lgb.cv and/or lgb.train     
 #' @keywords lightgbm train
 #' @import lightgbm
 #' @export
@@ -41,8 +41,8 @@ train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,
   if(!is_cv) dvalid = lgb.Dataset(data = as.matrix(dvalid[,x]),label = dvalid[,y],weight = dvalid[,w])
   
   ## Add the seeds into the parameters list if they dont exist
-  if(is.null(lgbParams$bagging_seed)) lgbParams$bagging_seed = seed
-  if(is.null(lgbParams$feature_fraction_seed)) lgbParams$feature_fraction_seed = seed
+  if(is.null(LgbParams$bagging_seed)) LgbParams$bagging_seed = seed
+  if(is.null(LgbParams$feature_fraction_seed)) LgbParams$feature_fraction_seed = seed
 
   ## If we're doing CV pick nrounds
   if(is_cv){ if(verbose) message('>>>>> Fitting CV Model')
@@ -73,6 +73,7 @@ train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,
                                    valids    = watchlist,
                                    early_stopping_rounds = early_stopping_rounds,
                                    verbose = verbose,
+                                   record  = TRUE,
                                    ...)
   
   ## Return final model
