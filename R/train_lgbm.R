@@ -12,6 +12,7 @@
 #' @param nfold                  How many folds to use if doing cross validation   
 #' @param folds                  A list of pre defined fold indicies (test indicies) - see main xgboost docs for more details.
 #' @param verbose                Print run time messages  
+#' @param seed                   An integer which will be used as the random seed. Defaults to 1921
 #' @param ...                    Additional Arguments to be passed to xgb.cv and/or xgb.train     
 #' @keywords lightgbm train
 #' @import lightgbm
@@ -19,7 +20,7 @@
 #' @examples
 #' 
 
-train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,stratified=FALSE,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=1,seed=1988,...){
+train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,stratified=FALSE,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=1,seed=1921,...){
     
   ## Are we doing CV?
   is_cv = is.null(dvalid)
