@@ -52,6 +52,7 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
                                      nfold   = nfold,
                                      folds   = folds,
                                      verbose = verbose,
+                                     prediction = TRUE,
                                      ...) } else xgbCV = NULL 
   
   ## Sort out the parameters
