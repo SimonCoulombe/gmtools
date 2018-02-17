@@ -28,7 +28,7 @@
      ## Tests all around the CV parameters
      expect_equal(tmp$dvalid,NULL)
      expect_equal(tmp$is_cv,TRUE)
-     expect_equal(class(lgb_mdl$LgbCV)[1],"lgb.CVBooster")
+     expect_equal(class(tmp$LgbCV)[1],"lgb.CVBooster")
      expect_equal(length(tmp$LgbCV$boosters),5)
      
      ## Check if the numbner of optimal rounds was observed
@@ -36,7 +36,7 @@
      expect_equal(tmp$fin_early_stopping_rounds,NULL)
      
      ## Check if the weights are OK - if we get problems we can add another test for weighted stuff
-     expect_equal(max(getinfo(tmp$dtrain,'weight')),1)
+     expect_equal(max(lightgbm::getinfo(tmp$dtrain,'weight')),1)
      
    })
 
@@ -61,6 +61,6 @@
      expect_equal(tmp$fin_early_stopping_rounds,5)
      
      ## Check if the weights are OK - if we get problems we can add another test for weighted stuff
-     expect_equal(max(getinfo(tmp$dtrain,'weight')),1)
+     expect_equal(max(lightgbm::getinfo(tmp$dtrain,'weight')),1)
      
    })

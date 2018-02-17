@@ -1,5 +1,5 @@
 ## Set the context
-   context('Check that the preparation of example data works')
+   context('Check the preparation of example data works')
 
 ## Run the tests
    test_that(desc = 'test that the prepare_example_data function works',code = {

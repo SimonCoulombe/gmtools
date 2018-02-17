@@ -19,7 +19,7 @@ train_lightgbm(dtrain, dvalid = NULL, x, y, w = NULL, LgbParams,
 
 \item{w}{A column name that contains the name of the weight column. Defaults to NULL}
 
-\item{LgbParams}{A named list containing the XGBoost Learning Parameters}
+\item{LgbParams}{A named list containing the lightgbm Learning Parameters}
 
 \item{nrounds}{The maximum number of iterations}
 
@@ -27,13 +27,13 @@ train_lightgbm(dtrain, dvalid = NULL, x, y, w = NULL, LgbParams,
 
 \item{nfold}{How many folds to use if doing cross validation}
 
-\item{folds}{A list of pre defined fold indicies (test indicies) - see main xgboost docs for more details.}
+\item{folds}{A list of pre defined fold indicies (test indicies) - see main lightgbm docs for more details.}
 
 \item{verbose}{Print run time messages}
 
 \item{seed}{An integer which will be used as the random seed. Defaults to 1921}
 
-\item{...}{Additional Arguments to be passed to xgb.cv and/or xgb.train}
+\item{...}{Additional Arguments to be passed to lgb.cv and/or lgb.train}
 }
 \description{
 A wrapper function that automates the lightGBM training process
