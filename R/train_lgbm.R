@@ -19,7 +19,7 @@
 #' @examples
 #' 
 
-train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,stratified=FALSE,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=0,...){
+train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,stratified=FALSE,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=1,seed=1988,...){
     
   ## Are we doing CV?
   is_cv = is.null(dvalid)
@@ -39,9 +39,13 @@ train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,
   dtrain = lgb.Dataset(data = as.matrix(dtrain[,x]),label = dtrain[,y],weight = dtrain[,w])
   if(!is_cv) dvalid = lgb.Dataset(data = as.matrix(dvalid[,x]),label = dvalid[,y],weight = dvalid[,w])
   
+  ## Add the seeds into the parameters list if they dont exist
+  if(is.null(lgbParams$bagging_seed)) lgbParams$bagging_seed = seed
+  if(is.null(lgbParams$feature_fraction_seed)) lgbParams$feature_fraction_seed = seed
+
   ## If we're doing CV pick nrounds
-  
   if(is_cv){ if(verbose) message('>>>>> Fitting CV Model')
+  			 set.seed(seed)
              LgbCV = lightgbm::lgb.cv(params  = LgbParams,
                                       data    = dtrain,
                                       nrounds = nrounds,
@@ -61,6 +65,7 @@ train_lightgbm <- function(dtrain,dvalid=NULL,x,y,w=NULL,LgbParams,nrounds=5000,
  
   ## Now train the final model
   if(verbose) message('>>>>> Training Final Model')
+  set.seed(seed)
   finalModel = lightgbm::lgb.train(params    = LgbParams,
                                    data      = dtrain, 
                                    nrounds   = opt_nrounds,

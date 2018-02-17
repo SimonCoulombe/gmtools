@@ -19,7 +19,7 @@
 #' @examples
 #' 
 
-train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=TRUE,...){
+train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=TRUE,seed=1988,...){
   
   ## Load xgboost
   ## suppressPackageStartupMessages(requireNamespace("xgboost"))
@@ -45,6 +45,7 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
   ## If we're doing CV pick nrounds
   
   if(is_cv){ if(verbose) message('>>>>> Fitting CV Model')
+             set.seed(seed)
              xgbCV = xgboost::xgb.cv(params  = xgbParams,
                                      data    = dtrain,
                                      nrounds = nrounds,
@@ -63,6 +64,7 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
  
   ## Now train the final model
   if(verbose) message('>>>>> Training Final Model')
+  set.seed(seed)
   finalModel = xgboost::xgb.train(params    = xgbParams,
                                   data      = dtrain,
                                   nrounds   = opt_nrounds,
