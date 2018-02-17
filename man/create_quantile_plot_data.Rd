@@ -4,12 +4,12 @@
 \alias{create_quantile_plot_data}
 \title{create_quantile_plot_data}
 \usage{
-create_quantile_plot_data(y_true, y_pred, w = NULL, nbins = 10)
+create_quantile_plot_data(y_pred, y_true, w = NULL, nbins = 10)
 }
 \arguments{
-\item{y_true}{The actuals you want to compare your model against}
-
 \item{y_pred}{The predictions that you want to compare the actuals to - these will be pro-rated.}
+
+\item{y_true}{The actuals you want to compare your model against}
 
 \item{w}{A column of row level weights (e.g. exposure, claim count). Defaults to NULL}
 
