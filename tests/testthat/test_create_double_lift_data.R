@@ -21,6 +21,12 @@
                                  actual = dataCar$numclaims,
                                  weight = dataCar$exposure,
                                  nbins  = 10)
+
+   ret2 = create_double_lift_data(modelA = exp(predict(glm_one,dataCar)),
+                                 modelB = exp(predict(glm_two,dataCar)),
+                                 actual = dataCar$numclaims,
+                                 weight = dataCar$exposure,
+                                 nbins  = 5)
    
    test_that(desc = 'the function works for weighted data',code = { 
    
@@ -29,6 +35,9 @@
      ## By transivity they A = B
      expect_equal(sum(ret$mean_modelA*ret$sum_weight),sum(ret$mean_actual*ret$sum_weight))
      expect_equal(sum(ret$mean_modelB*ret$sum_weight),sum(ret$mean_actual*ret$sum_weight))
+
+     ## Check that the nbins parameter works properly
+     expect_equal(nrow(ret2),5)
    
    })
    

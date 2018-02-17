@@ -11,6 +11,8 @@
 #' @examples
 #' 
 
+## TODO: Add in an option to export the ratios within a bin - this is useful information to have
+
 create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
   
   ## Make sure data.table package is loaded

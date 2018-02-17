@@ -19,7 +19,7 @@ plot_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
                                     modelB = modelB,
                                     actual = actual,
                                     weight = weight,
-                                    nbins  = 10)
+                                    nbins  = nbins)
  
  ## Scale the weight so we get it all on the same axes
  plotData$scaled_weight = plotData$sum_weight * (mean(plotData$mean_actual)/max(plotData$sum_weight)) 
