@@ -93,6 +93,13 @@ fit_h2o_mdl <- function(algo='h2o.glm',x,y,weights_column=NULL,training_frame,va
      int_train_data = load_h2o_data(data = training_frame  ,key = 'int_train_data',write_read = write_read)
      int_valid_data = load_h2o_data(data = validation_frame,key = 'int_valid_data',write_read = write_read)
 
+  ## Format the respons as an h2o factor if we're doing classification 
+  extra_args = list(...)
+  if('distribution' %in% names(extra_args) && extra_args$distribution == 'bernoulli') {
+    int_train_data[,y] = h2o::as.factor(x = int_train_data[,y])
+    int_valid_data[,y] = h2o::as.factor(x = int_valid_data[,y])
+  }   
+
   ## Fit the h2o mdl
      mdlParams = list(x = x,
                       y = y,
