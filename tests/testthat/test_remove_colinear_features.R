@@ -10,5 +10,5 @@
 ## Run the tests
    test_that(desc = 'check that the remove_colinear_features function works',
    			 code = { cor_info = remove_colinear_features(df = polishBank,features = features,use = "complete.obs")
-   			 		  all.equal(cor_info$correlation_matrix,cor(polishBank[,features],use = "complete.obs"))
-   			 		  all.equal(cor_info$included_features,34) })
+   			 		  expect_equal(cor_info$correlation_matrix,cor(polishBank[,features],use = "complete.obs"))
+   			 		  expect_equal(length(cor_info$included_features),34) })
