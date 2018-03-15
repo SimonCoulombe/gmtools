@@ -2,7 +2,7 @@
    context("Check that the remove_colinear_features function works")
 
 ## Load some test data
-   load("../Downloads/polishBank.rda")
+   data(polishBank,package = "gmtools")
 
 ## Set up the feature list
    features = names(polishBank)[1:64]
