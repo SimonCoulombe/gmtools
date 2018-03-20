@@ -6,6 +6,7 @@
 #' @param actual A vector that contains the actuals that the models are to be compared to
 #' @param weight A vector that contains the row level weights (exposure,claim count). Defaults to NULL
 #' @param nbins Passed to the binnarise function - how many equally sized bins should the ratio be cut into
+#' @param retLabel Keep string labels from binnarise
 #' @keywords plot double lift
 #' @export
 #' @import ggplot2
