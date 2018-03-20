@@ -12,14 +12,15 @@
 #' @examples
 #' 
 
-plot_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
+plot_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10,retLabel=FALSE){
   
  ## Build the data for plotting  
  plotData = create_double_lift_data(modelA = modelA,
                                     modelB = modelB,
                                     actual = actual,
                                     weight = weight,
-                                    nbins  = nbins)
+                                    nbins  = nbins,
+                                    retLabel = retLabel)
  
  ## Scale the weight so we get it all on the same axes
  plotData$scaled_weight = plotData$sum_weight * (mean(plotData$mean_actual)/max(plotData$sum_weight)) 
