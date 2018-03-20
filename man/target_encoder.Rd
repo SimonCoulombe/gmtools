@@ -13,7 +13,7 @@ target_encoder(train_df, test_df, y, x, w = NULL, verbose = FALSE, ...)
 
 \item{y}{A string containing the name of the target column}
 
-\item{x}{A string containing the name of the xvalue column}
+\item{x}{A string containing the names of the columns to be processed}
 
 \item{w}{A string containing the name of the weight column. Defaults to NULL.}
 

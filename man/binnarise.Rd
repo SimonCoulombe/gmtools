@@ -4,7 +4,7 @@
 \alias{binnarise}
 \title{binnarise}
 \usage{
-binnarise(x, w = NULL, nbins = 10)
+binnarise(x, w = NULL, nbins = 10, retLabel = FALSE)
 }
 \arguments{
 \item{x}{A vector containing the values to be binned}

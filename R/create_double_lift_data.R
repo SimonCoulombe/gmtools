@@ -13,7 +13,7 @@
 
 ## TODO: Add in an option to export the ratios within a bin - this is useful information to have
 
-create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
+create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10,retLabel=FALSE){
   
   ## Make sure data.table package is loaded
   ## suppressPackageStartupMessages(requireNamespace("data.table"))
@@ -31,7 +31,7 @@ create_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10){
   if(anyNA(x = dtWorking[,c("modelA","modelB","actual","weight"),with=FALSE])) stop('ERROR: No NANs allowed in scores, weights or actuals')
   
   ## Create the bins
-  dtWorking$bin = gmtools::binnarise(x = dtWorking$modelRatio,w = dtWorking$weight,nbins = nbins)
+  dtWorking$bin = gmtools::binnarise(x = dtWorking$modelRatio,w = dtWorking$weight,nbins = nbins,retLabel = retLabel)
     
   ## Pro-rata scores
   dtWorking$modelA = dtWorking$modelA * dtWorking$weight
