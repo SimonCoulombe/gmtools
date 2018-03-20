@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #' 
-binnarise <- function(x,w=NULL,nbins=10){
+binnarise <- function(x,w=NULL,nbins=10,retLabel=FALSE){
   
   ## Make sure dplyr is loaded
   ## suppressPackageStartupMessages(requireNamespace("dplyr"))
@@ -32,7 +32,9 @@ binnarise <- function(x,w=NULL,nbins=10){
   breaks = quantile(x = dfWorking$cumSumW,probs = seq(0,1,length=nbins+1))
   
   ## Bin the result
-  dfWorking$bin = as.numeric(cut(x = dfWorking$cumSumW,breaks = breaks,include.lowest = TRUE))
+  dfWorking$bin = cut(x = dfWorking$cumSumW,breaks = breaks,include.lowest = TRUE)
+  if(retLabel==FALSE) dfWorking$bin = as.numeric(dfWorking$bin)
+
   dfWorking = dfWorking %>% dplyr::arrange(Index)
   
   ## Return the result
