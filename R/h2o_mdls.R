@@ -108,6 +108,12 @@ fit_h2o_mdl <- function(algo='h2o.glm',x,y,weights_column=NULL,training_frame,va
                       validation_frame= validation_frame,
                       ...)
 
+     ## If we're running an autoencoder we need to remove y
+     if ('autoencoder' %in% names(mdlParams) && mdlParams$autoencoder == TRUE) {
+          mdlParams$y <- NULL
+          mdlParams$distribution <- NULL
+      } 
+
      fittedMDL = do.call(what = algo,args = mdlParams)
 
   ## return the fitted model object

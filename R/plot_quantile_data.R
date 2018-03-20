@@ -15,6 +15,7 @@ plot_quantile_data <- function(y_pred,y_true,w=NULL,nbins=10){
   
   ## Build the plot data
   plotData = create_quantile_plot_data(y_true = y_true,y_pred = y_pred,w = w,nbins = nbins)
+  message('bMAE: ',plotData$bMAE)
 
   ## Make the scaled weight column
   plotData$data$scaled_weight = plotData$data$sum_weight * (mean(plotData$data$wmean_pred)/max(plotData$data$sum_weight))

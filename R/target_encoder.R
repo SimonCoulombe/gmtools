@@ -79,7 +79,7 @@
 #' @param train_df A data.frame (or coercible object) that contains the training set columns to be encoded
 #' @param test_df  A data.frame (or coercible object) that contains the test set columns to be encoded
 #' @param y        A string containing the name of the target column
-#' @param x        A string containing the name of the xvalue column
+#' @param x        A string containing the names of the columns to be processed
 #' @param w        A string containing the name of the weight column. Defaults to NULL.
 #' @param verbose  A logical indicating whether to print run time progress messages or not.
 #' @param ...      Further arguments to be passed to .target_encode

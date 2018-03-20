@@ -69,10 +69,13 @@ create_interactions <- function(df,intList,nlvl=25,...){
   
  ## Loop over interactions
  interactions = do.call(cbind,lapply(X = intList,
-                              function(i){ make_interaction(df = df,
-                                                            recipe = i,
-                                                            nlvl = nlvl,
-                                                            ...)$intVal }))
+                              function(i){ temp = make_interaction(df = df,
+                                                                   recipe = i,
+                                                                   nlvl = nlvl,...)
+                                           ret  = temp$intVal
+                                           names(ret) = temp$intName
+                                           return(ret)
+                                           }))
  
  ## Return the info
  return(interactions)
