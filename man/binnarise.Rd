@@ -12,6 +12,8 @@ binnarise(x, w = NULL, nbins = 10, retLabel = FALSE)
 \item{w}{A vector that contains the row weights. Defaults to NULL.}
 
 \item{nbins}{How many bins do you wish to create.}
+
+\item{retLabel}{Keep string labels from binnarise}
 }
 \description{
 Function that creates equal width bins of a numeric input

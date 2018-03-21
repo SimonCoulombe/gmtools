@@ -4,7 +4,8 @@
 \alias{create_double_lift_data}
 \title{create_double_lift_data}
 \usage{
-create_double_lift_data(modelA, modelB, actual, weight = NULL, nbins = 10)
+create_double_lift_data(modelA, modelB, actual, weight = NULL, nbins = 10,
+  retLabel = FALSE)
 }
 \arguments{
 \item{modelA}{A vector that contains the predictions for Model A - preds will be pro-rated}
@@ -16,6 +17,8 @@ create_double_lift_data(modelA, modelB, actual, weight = NULL, nbins = 10)
 \item{weight}{A vector that contains the row level weights (exposure,claim count). Defaults to NULL}
 
 \item{nbins}{Passed to the binnarise function - how many equally sized bins should the ratio be cut into}
+
+\item{retLabel}{Keep string labels from binnarise}
 }
 \description{
 This function creates the requisite data for a double lift chart

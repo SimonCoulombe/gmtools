@@ -29,11 +29,11 @@ plot_double_lift_data <- function(modelA,modelB,actual,weight=NULL,nbins=10,retL
  ## Build the plot
  thePlt = ggplot(data = plotData,aes(x = bin)) + 
            geom_point(aes(y = mean_modelA,colour = 'modelA')) + 
-           geom_line(aes(y = mean_modelA,colour = 'modelA'))  + 
+           geom_line(aes(y = mean_modelA,colour = 'modelA',group = 1))  + 
            geom_point(aes(y = mean_modelB,colour = 'modelB')) + 
-           geom_line(aes(y = mean_modelB,colour = 'modelB'))  + 
+           geom_line(aes(y = mean_modelB,colour = 'modelB',group = 1))  + 
            geom_point(aes(y = mean_actual,colour = 'actual')) + 
-           geom_line(aes(y = mean_actual,colour = 'actual'))  + 
+           geom_line(aes(y = mean_actual,colour = 'actual',group = 1))  + 
            geom_bar(aes(y = scaled_weight),stat = 'identity',fill = 'yellow',alpha = 0.3) + 
            scale_color_manual(values = c('red','blue','black','yellow'))
  
