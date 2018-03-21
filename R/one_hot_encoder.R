@@ -5,7 +5,7 @@
 #' @param features A list of names that identify the columns to be encoded
 #' @keywords one hot encode
 #' @export
-#' @import caret
+#' @importFrom caret dummyVars contr.ltfr
 #' @examples
 #'
 
