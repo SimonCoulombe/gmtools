@@ -33,7 +33,13 @@ binnarise <- function(x,w=NULL,nbins=10,retLabel=FALSE){
   breaks = quantile(x = dfWorking$cumSumW,probs = seq(0,1,length=nbins+1))
   
   ## Bin the result
-  dfWorking$bin = cut(x = dfWorking$cumSumW,breaks = breaks,include.lowest = TRUE)
+  dfWorking$bin = cut(x = dfWorking$cumSumW,breaks = breaks,include.lowest = TRUE,dig.lab=5)
+
+  ## Sort our the labels
+  dtSummary = data.table(dfWorking)[ , list(max_x = max(x),min_x = min(x)) , by = bin][order(bin), ]
+  dtSummary$lbl = paste0(round(dtSummary$min_x,digits = 4)," - ",round(dtSummary$max_x,digits=4))
+  levels(dfWorking$bin) = dtSummary$lbl; rm(dtSummary)
+
   if(retLabel==FALSE) dfWorking$bin = as.numeric(dfWorking$bin)
 
   dfWorking = dfWorking %>% dplyr::arrange(Index)
