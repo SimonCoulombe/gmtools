@@ -27,7 +27,7 @@ load_h2o_data <- function(data,key,write_read=NULL){
        data.table::fwrite(x = data,file = og_loc)
 
        ## reimport the file using h2o.importFile
-       assign(x = key,h2o.importFile(path = og_loc,destination_frame = key))
+       assign(x = key,h2o::h2o.importFile(path = og_loc,destination_frame = key))
      } else {
        ## Else we can use as.h2o method
           options("h2o.use.data.table"=TRUE)

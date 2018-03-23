@@ -1,6 +1,42 @@
 #' train_xgboost
 #'
 #' A wrapper function that automates the xgboost training process
+#' @param data                   A data.frame (or coercible object) that contains the training data
+#' @param x                      A list of column names that identify the explanatory features 
+#' @param y                      A column name that identifies that target variable
+#' @param w                      A column name that contains the name of the weight column. Defaults to NULL
+#' @param w                      A column name that contains the name of the offset column. Defaults to NULL
+#' @keywords create dmatrix
+#' @import xgboost
+#' @export
+#' @examples
+#' 
+
+xgb_create_dmatrix <- function(data,x,y,w=NULL,base_margin=NULL){
+
+  ## Make sure input is a data.frame
+  if(class(data)[1] != 'data.frame') data = as.data.frame(data)
+
+  ## Create the labels
+  label = data[,y]
+
+  ## Deal with null weights
+  if(is.null(w)) weight = rep(1,nrow(data)) else weight = data[,w]
+
+  ## Now Convert the data to a dmatrix
+  dmat = xgb.DMatrix(data = as.matrix(data[,x]),label = label,weight = weight)
+
+  ## Add an offset if required
+  if(!is.null(base_margin)) setinfo(dmat,"base_margin",data[,base_margin])
+  
+  ## Return the result
+  return(dmat)
+
+}
+
+#' train_xgboost
+#'
+#' A wrapper function that automates the xgboost training process
 #' @param dtrain                 A data.frame that contains the training data
 #' @param dvalid                 A data.frame that contains the validation data. If NULL then the function uses cross validation. Defaults to NULL.
 #' @param x                      A list of column names that identify the explanatory features 

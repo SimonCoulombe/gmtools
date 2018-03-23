@@ -3,6 +3,38 @@
 
 ## Load data
    data(dataCar,package = 'insuranceData')
+   data(polishBank,package = "gmtools")
+
+## test the xgb_create_dmatrix
+   test_that(desc = "The xgb_create_dmatrix works",code = {
+  
+               ## Create reference
+               all_opt = xgb_create_dmatrix(data = polishBank,
+                                            x = names(polishBank)[1:5],
+                                            y = names(polishBank)[6],
+                                            w = names(polishBank)[7],
+                                            base_margin = names(polishBank)[8])  
+               
+               ## Run generic tests
+               expect_equal(unlist(dimnames(all_opt)[2]),names(polishBank)[1:5])
+               expect_equal(object = getinfo(all_opt,"label"),polishBank[,6],tolerance = 1e-7)
+               expect_equal(object = getinfo(all_opt,"weight"),expected = polishBank[,7],tolerance = 1e-7)
+               expect_equal(object = getinfo(all_opt,"base_margin"),expected = polishBank[,8],tolerance = 1e-7)
+               
+               ## checking that the null args work
+               all_opt = xgb_create_dmatrix(data = polishBank,
+                                            x = names(polishBank)[1:5],
+                                            y = names(polishBank)[6])  
+               
+               
+               ## Run some more tests
+               expect_equal(unlist(dimnames(all_opt)[2]),names(polishBank)[1:5])
+               expect_equal(getinfo(all_opt,"label"),polishBank[,6],tolerance = 1e-7)
+               expect_equal(getinfo(all_opt,"base_margin"),NULL)
+               expect_equal(getinfo(all_opt,"weight"),rep(1,nrow(polishBank)))
+               
+              })  
+
 
 ## Start testing
    features = c('veh_value','agecat','veh_age')
