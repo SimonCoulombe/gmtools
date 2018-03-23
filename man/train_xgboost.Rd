@@ -4,9 +4,9 @@
 \alias{train_xgboost}
 \title{train_xgboost}
 \usage{
-train_xgboost(dtrain, dvalid = NULL, x, y, w = NULL, xgbParams,
-  nrounds = 5000, early_stopping_rounds = 5, nfold = 5, folds = NULL,
-  verbose = TRUE, seed = 1921, ...)
+train_xgboost(dtrain, dvalid = NULL, x, y, w = NULL, base_margin = NULL,
+  xgbParams, nrounds = 5000, early_stopping_rounds = 5, nfold = 5,
+  folds = NULL, verbose = TRUE, seed = 1921, ...)
 }
 \arguments{
 \item{dtrain}{A data.frame that contains the training data}

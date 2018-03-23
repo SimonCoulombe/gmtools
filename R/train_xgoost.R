@@ -56,11 +56,8 @@ xgb_create_dmatrix <- function(data,x,y,w=NULL,base_margin=NULL){
 #' @examples
 #' 
 
-train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=TRUE,seed=1921,...){
-  
-  ## Load xgboost
-  ## suppressPackageStartupMessages(requireNamespace("xgboost"))
-  
+train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds=5000,early_stopping_rounds=5,nfold = 5,folds=NULL,verbose=TRUE,seed=1921,...){
+      
   ## Are we doing CV?
   is_cv = is.null(dvalid)
   null_weights = is.null(w)
@@ -68,19 +65,14 @@ train_xgboost <- function(dtrain,dvalid=NULL,x,y,w=NULL,xgbParams,nrounds=5000,e
   ## Make sure input is data.frame & deal with null weights
   if(verbose) message('>>>>> Checking data')
   dtrain = as.data.frame(dtrain)
-  
-  if(null_weights){ w = 'w'
-                    dtrain$w = rep(1,nrow(dtrain)) }
-  if(!is_cv) { dvalid = as.data.frame(dvalid)
-               if(null_weights) dvalid$w = rep(1,nrow(dvalid))}
-  
+
   ## Create the various matricies
   if(verbose) message('>>>>> Creating Matricies')
-  dtrain = xgboost::xgb.DMatrix(data = as.matrix(dtrain[,x]),label = dtrain[,y],weight = dtrain[,w])
-  if(!is_cv) dvalid = xgboost::xgb.DMatrix(data = as.matrix(dvalid[,x]),label = dvalid[,y],weight = dvalid[,w])
-  
+  dtrain = xgb_create_dmatrix(data = dtrain,x = x,y = y,w = w,base_margin = base_margin)
+  if(!is_cv) { dvalid = as.data.frame(dvalid)
+               dvalid = xgb_create_dmatrix(data = dvalid,x = x,y = y,w = w,base_margin = base_margin) }
+   
   ## If we're doing CV pick nrounds
-  
   if(is_cv){ if(verbose) message('>>>>> Fitting CV Model')
              set.seed(seed)
              xgbCV = xgboost::xgb.cv(params  = xgbParams,
