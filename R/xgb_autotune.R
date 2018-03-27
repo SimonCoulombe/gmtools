@@ -61,7 +61,9 @@ xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,ea
   set.seed(seed)
   bayesOpt = BayesianOptimization(FUN = xgb_cv_wrapper,bounds = bounds,init_grid_dt = init_grid_dt,n_iter = n_iter,init_points = init_points,verbose = verbose)
   
-  return(list(BayesOptim = bayesOpt,BstXgbParams = c(xgbParams,unlist(bayesOpt$Best_Par))))}
+  ## Return the info
+  return(list(BayesOptim = bayesOpt,BstXgbParams = c(xgbParams,unlist(bayesOpt$Best_Par))))
+}
 
 
 
