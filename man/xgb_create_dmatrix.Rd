@@ -4,7 +4,7 @@
 \alias{xgb_create_dmatrix}
 \title{train_xgboost}
 \usage{
-xgb_create_dmatrix(data, x, y, w = NULL, base_margin = NULL)
+xgb_create_dmatrix(data, x, y = NULL, w = NULL, base_margin = NULL)
 }
 \arguments{
 \item{data}{A data.frame (or coercible object) that contains the training data}
