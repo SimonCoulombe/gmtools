@@ -18,6 +18,7 @@
 #' @param init_points Number of randomly chosen points to sample the target function before Bayesian Optimization fitting the Gaussian Process.
 #' @param n_iter      Total number of times the Bayesian Optimization is to repeated.
 #' @param init_grid_dt User specified points to sample the target function, should be a data.frame or data.table with identical column names as bounds. 
+#' @import rBayesianOptimization
 #' @export
 #' @examples
 #' 
