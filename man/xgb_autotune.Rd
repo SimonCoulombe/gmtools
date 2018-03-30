@@ -6,7 +6,7 @@
 \usage{
 xgb_autotune(dtrain, x, y, w = NULL, base_margin = NULL, xgbParams, nrounds,
   early_stopping_rounds, nfold, folds = NULL, verbose = TRUE, seed = 1921,
-  bounds, init_points, n_iter, init_grid_dt = NULL)
+  maximize = FALSE, bounds, init_points, n_iter, init_grid_dt = NULL, ...)
 }
 \arguments{
 \item{dtrain}{The training data for the optimisation}
@@ -33,6 +33,8 @@ xgb_autotune(dtrain, x, y, w = NULL, base_margin = NULL, xgbParams, nrounds,
 
 \item{seed}{Random State}
 
+\item{maximize}{Should the loss function be maximized or not?}
+
 \item{bounds}{A named list of lower and upper bounds for each hyperparameter. Please use "L" suffix to indicate integer hyperparameter.}
 
 \item{init_points}{Number of randomly chosen points to sample the target function before Bayesian Optimization fitting the Gaussian Process.}
@@ -40,6 +42,8 @@ xgb_autotune(dtrain, x, y, w = NULL, base_margin = NULL, xgbParams, nrounds,
 \item{n_iter}{Total number of times the Bayesian Optimization is to repeated.}
 
 \item{init_grid_dt}{User specified points to sample the target function, should be a data.frame or data.table with identical column names as bounds.}
+
+\item{...}{Additional args to be passed to BayesOptim}
 }
 \description{
 Run an automatic bayesian optimisation of xgboost

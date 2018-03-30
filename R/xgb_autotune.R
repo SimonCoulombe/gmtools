@@ -49,6 +49,7 @@ xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,ea
                      nrounds = nrounds,
                      nfold = nfold,
                      folds = folds,
+                     maximize = maximize,
                      prediction = TRUE,
                      early_stopping_rounds = early_stopping_rounds,
                      verbose = verbose)

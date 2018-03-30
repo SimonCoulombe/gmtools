@@ -4,9 +4,9 @@
 \alias{interaction_search}
 \title{interaction_search}
 \usage{
-interaction_search(mdl, features, XGBfiBin = "~/Kaggle/xgbfi/bin/", filterExp,
-  XGBfiParams = list(d = 3, g = -1, t = 100, k = 100, h = 10),
-  intern = FALSE)
+interaction_search(mdl, features, XGBfiBin = "~/Kaggle/xgbfi/bin/",
+  filterExp = NULL, XGBfiParams = list(d = 3, g = -1, t = 100, k = 100, h =
+  10), intern = FALSE)
 }
 \arguments{
 \item{mdl}{A trained xgboost model of class xgb.Booster}
