@@ -14,16 +14,18 @@
 #' @param folds       list provides a possibility to use a list of pre-defined CV folds (each element must be a vector of test fold's indices).
 #' @param verbose     Whether or not to print progress.
 #' @param seed        Random State
+#' @param maximize    Should the loss function be maximized or not?
 #' @param bounds      A named list of lower and upper bounds for each hyperparameter. Please use "L" suffix to indicate integer hyperparameter.
 #' @param init_points Number of randomly chosen points to sample the target function before Bayesian Optimization fitting the Gaussian Process.
 #' @param n_iter      Total number of times the Bayesian Optimization is to repeated.
 #' @param init_grid_dt User specified points to sample the target function, should be a data.frame or data.table with identical column names as bounds. 
+#' @param ...         Additional args to be passed to BayesOptim
 #' @import rBayesianOptimization
 #' @export
 #' @examples
 #' 
 
-xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,early_stopping_rounds,nfold,folds=NULL,verbose=TRUE,seed = 1921,bounds,init_points,n_iter,init_grid_dt=NULL) {
+xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,early_stopping_rounds,nfold,folds=NULL,verbose=TRUE,seed = 1921,maximize=FALSE,bounds,init_points,n_iter,init_grid_dt=NULL,...) {
  
   ## Stop the function from compiling for now
   ## stop('The Codez are not ready yet')
@@ -52,7 +54,8 @@ xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,ea
                      verbose = verbose)
       
       ## Output the results
-      return(list(Score = xgbCV$evaluation_log[xgbCV$best_iteration, 4],Pred = xgbCV$pred))
+      if(maximize==FALSE) Score = -xgbCV$evaluation_log[xgbCV$best_iteration, 4] else Score = xgbCV$evaluation_log[xgbCV$best_iteration, 4]
+      return(list(Score = Score,Pred = xgbCV$pred))
    }
   
   ## Create the dmatricies
