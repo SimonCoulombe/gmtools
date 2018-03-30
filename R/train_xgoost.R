@@ -12,13 +12,13 @@
 #' @examples
 #' 
 
-xgb_create_dmatrix <- function(data,x,y,w=NULL,base_margin=NULL){
+xgb_create_dmatrix <- function(data,x,y=NULL,w=NULL,base_margin=NULL){
 
   ## Make sure input is a data.frame
   if(class(data)[1] != 'data.frame') data = as.data.frame(data)
 
   ## Create the labels
-  label = data[,y]
+  if(is.null(y)) label = rep(1,nrow(data))  else  label = data[,y]
 
   ## Deal with null weights
   if(is.null(w)) weight = rep(1,nrow(data)) else weight = data[,w]
