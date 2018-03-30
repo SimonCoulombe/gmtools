@@ -25,7 +25,7 @@
 xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,early_stopping_rounds,nfold,folds=NULL,verbose=TRUE,seed = 1921,bounds,init_points,n_iter,init_grid_dt=NULL) {
  
   ## Stop the function from compiling for now
-  stop('The Codez are not ready yet')
+  ## stop('The Codez are not ready yet')
 
   ## Define function here - therefore it will inherit the other params (xgbParams etc) from the calling scope
   xgb_cv_wrapper <- function(max_depth=NULL,min_child_weight=NULL,gamma=NULL,colsample_bytree=NULL,subsample=NULL,lambda=NULL,max_delta_step=NULL){
@@ -51,7 +51,8 @@ xgb_autotune <- function(dtrain,x,y,w=NULL,base_margin=NULL,xgbParams,nrounds,ea
                      verbose = verbose)
       
       ## Output the results
-      return(list(Score = xgbCV$evaluation_log[xgbCV$best_iteration, 4],Pred = xgbCV$pred))}
+      return(list(Score = xgbCV$evaluation_log[xgbCV$best_iteration, 4],Pred = xgbCV$pred))
+   }
   
   ## Create the dmatricies
   dtrain = xgb_create_dmatrix(data = dtrain,x = x,y = y,w = w,base_margin = base_margin)  
