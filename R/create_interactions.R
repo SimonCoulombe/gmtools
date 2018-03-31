@@ -66,7 +66,10 @@ make_interaction <- function(df,recipe,nlvl,...){
 #'
 
 create_interactions <- function(df,intList,nlvl=25,...){
-  
+ 
+ ## Sort out the input
+ if(class(df)[1] != "data.frame") df = as.data.frame(df)
+
  ## Loop over interactions
  interactions = do.call(cbind,lapply(X = intList,
                               function(i){ temp = make_interaction(df = df,
