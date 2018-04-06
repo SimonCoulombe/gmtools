@@ -4,7 +4,8 @@
 \alias{target_encoder}
 \title{target_encoder}
 \usage{
-target_encoder(train_df, test_df, y, x, w = NULL, verbose = FALSE, ...)
+target_encoder(train_df, test_df = NULL, y, x, w = NULL, verbose = FALSE,
+  ...)
 }
 \arguments{
 \item{train_df}{A data.frame (or coercible object) that contains the training set columns to be encoded}

@@ -87,10 +87,13 @@
 #' @export
 #' @examples
 #' 
-target_encoder <- function(train_df,test_df,y,x,w=NULL,verbose=FALSE,...){
+target_encoder <- function(train_df,test_df=NULL,y,x,w=NULL,verbose=FALSE,...){
   
   ## Do some parameter checking
   if(class(train_df)[1] != 'data.frame') train_df = as.data.frame(train_df)
+
+  ## Sort out null test set
+  if(is.null(test_df)) test_df = train_df
   if(class(test_df)[1] != 'data.frame') test_df = as.data.frame(test_df)
   
   ## Deal with NULL weights
