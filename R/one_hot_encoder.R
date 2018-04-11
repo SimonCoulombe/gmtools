@@ -5,18 +5,18 @@
 #' @param features A list of names that identify the columns to be encoded
 #' @keywords one hot encode
 #' @export
-#' @importFrom caret dummyVars contr.ltfr 
+#' @import caret
 #' @examples
 #'
 
 one_hot_encoder <- function(df,features){
-  ## suppressPackageStartupMessages(requireNamespace("caret"))
-  df      = as.data.frame(df)
+  if(class(df)[1] != "data.frame") df = as.data.frame(df)
   frmla   = as.formula(paste0('~ ',paste(features,collapse = ' + ')))
   oh_xfrm = caret::dummyVars(formula = frmla,data = df,sep = '.')
   oh_dat  = predict(oh_xfrm,df)
-  keepCol = names(df)[-which(names(df) %in% features)]
-  df      = cbind(df[,keepCol],oh_dat)
+  #keepCol = names(df)[-which(names(df) %in% features)]
+  #df      = cbind(df[,keepCol],oh_dat)
+  df      = cbind(df,oh_dat)
   return(df)
 }
 
