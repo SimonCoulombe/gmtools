@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Traditional Insurance Risk Modeling uses a very specific tool set. Risk modeler are therefore are highly specialized; meaning that producing models with these tools quickly yields high quality models. This sets something of a high bar which new tools and techniques must clear to gain acceptance.
+Traditional Insurance Risk Modeling uses a very specific tool set. Risk modelers are therefore are highly specialized; meaning that producing models with these tools quickly yields high quality models. This sets something of a high bar which new tools and techniques must clear to gain acceptance.
 
 This package is aimed at providing various accelerators to help risk modelers prove the value of Machine Learning techniques as applied to insurance modeling. Insurance Risk modeling has well established best practices and therefore we need to make sure that any new ML techniques either use existing or have equivalent functionality. 
 
@@ -12,13 +12,13 @@ This section outlines the capabilities that are required when building risk mode
 
 #### Fast Model Fitting
 
-Typically risk models are based around GLMs this yields a number of benefits namely;
+Typically risk models are based around GLMs which have a number of strengths namely;
 
 1. They are quick to fit, especially when using some of the standard proprietary packages
 2. The quickness of fitting allows for an iterative (and somewhat intuitive) approach
 3. They can handle relatively large datasets without issue (60M records and up)
 
-Any prospective techniques should therefore be able to scale well to large datasets and do in a timely manner. With these constraints in mind the following algorithms are heavily used in this package:
+Any prospective techniques should therefore be able to scale well to large datasets and do so in a timely manner. With these constraints in mind the following algorithms are heavily used in this package:
 
 - XGBoost: scales well to large dataset and can be enabled for GPU computation which further increases speed
 - LightGbm: demonstratively faster than XGBoost in most settings, it can also be compiled with GPU support
